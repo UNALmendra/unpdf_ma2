@@ -5,14 +5,27 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native'
 
 import imgtopdf from './assets/Images/PDF-to-JPG.png'
 import pdftoimg from './assets/Images/PDF-to-PNG.png'
+import logo from './assets/Images/unpdf_white.png'
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import Documents from './screens/Documents';
 
 const Stack = createNativeStackNavigator();
 
 const HomeScreen = ({ navigation }) => {
   return (
         <View style={styles.container}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Documents')}>
+            <Image
+              source={imgtopdf}
+              style={styles.image}
+            />
+          </TouchableOpacity>
+          
+          <Text>Mis Documentos</Text>
+
           <TouchableOpacity>
             <Image
               source={imgtopdf}
@@ -30,7 +43,7 @@ const HomeScreen = ({ navigation }) => {
             />
           </TouchableOpacity>
           <Text>Convertir PNG a PDF</Text>
-          </View>
+        </View>
       );
 }
 
@@ -50,6 +63,7 @@ const App = () => {
         <Stack.Navigator>
           <Stack.Screen name='Home' component={HomeScreen}/>
           <Stack.Screen name='Images' component={ImageScreen}/>
+          <Stack.Screen name='Documents' component={Documents}/>
         </Stack.Navigator>
         <StatusBar style="auto" />
     </NavigationContainer>
@@ -66,6 +80,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
   },
 
+  logo: {
+    padding: 100,
+  },
   image: {
     height: 200,
     width: 300,
