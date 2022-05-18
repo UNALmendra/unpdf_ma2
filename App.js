@@ -5,7 +5,7 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native'
 
 import imgtopdf from './assets/Images/PDF-to-JPG.png'
 import pdftoimg from './assets/Images/PDF-to-PNG.png'
-import logo from './assets/Images/unpdf_white.png'
+import documents from './assets/Images/documents.png'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -19,7 +19,7 @@ const HomeScreen = ({ navigation }) => {
           <TouchableOpacity
             onPress={() => navigation.navigate('Documents')}>
             <Image
-              source={imgtopdf}
+              source={documents}
               style={styles.image}
             />
           </TouchableOpacity>
