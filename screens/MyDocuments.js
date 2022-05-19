@@ -18,14 +18,16 @@ const ALL_DOCUMENTS = gql`
 
 
 const MyDocuments = () => {
-  
-    const [fileResponse, setFileResponse] = useState([]);
 
     const handleDocumentSelection = useCallback(async () => {
         try {
-          const response = await DocumentPicker.getDocumentAsync();
+          const response = await DocumentPicker.getDocumentAsync({
+            type: "application/pdf"
+          });
           console.log(response)
-          setFileResponse(response);
+          if(response.type === "success"){
+
+          }
         } catch (err) {
           console.warn(err);
         }
