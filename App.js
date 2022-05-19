@@ -3,8 +3,10 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Button } f
 
 import { NavigationContainer } from '@react-navigation/native'
 
+import logo from './assets/Images/unpdf_regular_alt.png'
 import pdftoimg from './assets/Images/PDF-to-PNG.png'
 import mydocuments from './assets/Images/documents.png'
+import styles from './styles/appStyles';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Images from './screens/Images'
@@ -23,6 +25,10 @@ const Stack = createNativeStackNavigator();
 const HomeScreen = ({ navigation }) => {
   return (
         <View style={styles.container}>
+          <Image
+            source={logo}
+            style={styles.logo}
+          />
           <TouchableOpacity
             onPress={() => navigation.navigate('MyDocuments')}>
             <Image
@@ -62,27 +68,4 @@ const App = () => {
   )
 }
 
-export default App
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center', 
-  },
-
-  logo: {
-    padding: 100,
-  },
-  image: {
-    height: 200,
-    width: 300,
-  },
-  ImageBackground: {
-    flex: 1,
-    resizeMode: "cover",
-    width: "100%",
-    alignItems: "center",
-  },
-});
+export default App;

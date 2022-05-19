@@ -7,15 +7,16 @@ const MyDocuments = () => {
     return(
         <View style={{
             flex: 1,
-            justifyContent: 'center',
             alignItems: 'center'
           }}>
+          <Text style={styles.title}> Mis Documentos</Text>
           <TouchableOpacity>
             <Image
               source={upload}
               style={styles.image}
             />
           </TouchableOpacity>
+          <Text>Mis Documentos</Text>
         </View>
     );
 }
