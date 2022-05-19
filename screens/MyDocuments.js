@@ -3,8 +3,9 @@ import * as DocumentPicker from 'expo-document-picker';
 import { Text, View, TouchableOpacity, Image, ScrollView } from "react-native"
 import upload from '../assets/Images/upload.png'
 import styles from '../styles/appStyles'
-import { gql, useQuery } from '@apollo/client'
+import { gql, useQuery, useMutation } from '@apollo/client'
 import DocumentList from "./DocumentList"
+import * as FileSystem from 'expo-file-system';
 
 const ALL_DOCUMENTS = gql`
   query {
@@ -15,18 +16,33 @@ const ALL_DOCUMENTS = gql`
     }
   }
 `
-
+let POST_DOCUMENT = gql``;
 
 const MyDocuments = () => {
 
+    
     const handleDocumentSelection = useCallback(async () => {
         try {
           const response = await DocumentPicker.getDocumentAsync({
             type: "application/pdf"
           });
-          console.log(response)
           if(response.type === "success"){
-
+            const base64 = await FileSystem.readAsStringAsync(response.uri, { encoding: 'base64' });
+            POST_DOCUMENT = gql`
+              mutation {
+              postNewDocument(document: {
+                name: "${response.name}",
+                file: "${base64}",
+                type: "pdf",
+                user: "1"
+                
+              }) {
+                storage
+              }
+            }
+            `
+            let [postDocument, dle] = useMutation(POST_DOCUMENT);
+            postDocument()
           }
         } catch (err) {
           console.warn(err);
