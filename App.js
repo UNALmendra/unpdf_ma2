@@ -1,12 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Button } from 'react-native';
 
-import { NavigationContainer, useNavigation } from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native'
 
 import imgtopdf from './assets/Images/PDF-to-JPG.png'
 import pdftoimg from './assets/Images/PDF-to-PNG.png'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Images from './screens/Images'
+import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: new HttpLink({
+    uri: 'http://192.168.10.14:5000/graphql'
+  })
+})
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +31,9 @@ const HomeScreen = ({ navigation }) => {
           <Text>Convertir PDF a PNG</Text>
     
           <TouchableOpacity
-            onPress={() => navigation.navigate('Images')}>
+            onPress={() => {
+              Images.auxGetDocumentsUser
+              navigation.navigate('Images')}}>
             <Image
               source={pdftoimg}
               style={styles.image}
@@ -34,25 +44,18 @@ const HomeScreen = ({ navigation }) => {
       );
 }
 
-const ImageScreen = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-
-    </View>
-  )
-}
-
 const App = () => {
   return (
-    <NavigationContainer>
+    <ApolloProvider client={client}>
+      <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name='Home' component={HomeScreen}/>
-          <Stack.Screen name='Images' component={ImageScreen}/>
+          <Stack.Screen name='Images' component={Images}/>
         </Stack.Navigator>
         <StatusBar style="auto" />
-    </NavigationContainer>
+      </NavigationContainer>
+    </ApolloProvider>
+    
   )
 }
 
