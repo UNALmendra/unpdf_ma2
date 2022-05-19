@@ -1,12 +1,18 @@
-import {Text, ScrollView, Image, StyleSheet, TouchableOpacity} from 'react-native'
+import {Text, Image, StyleSheet, TouchableOpacity} from 'react-native'
+
 
 const storageUrl = "https://storage.googleapis.com/unpdf_st/"
 
-export const Documents = ({documents}) =>{
+
+
+export const Documents = ({documents, navigation}) =>{
+
     return (
         documents.map(doc => {
             if (doc.type == "jpg" || doc.type == "png"){
-                return <TouchableOpacity key={doc.storage}>
+                return <TouchableOpacity key={doc.storage} onPress={()=>{
+                    navigation.navigate('PDF')
+                }}>
                             <Image
                             style={styles.image}
                             source={{uri: storageUrl+doc.storage}}/>

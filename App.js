@@ -3,12 +3,12 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Button } f
 
 import { NavigationContainer } from '@react-navigation/native'
 
-import imgtopdf from './assets/Images/PDF-to-JPG.png'
 import pdftoimg from './assets/Images/PDF-to-PNG.png'
 import documents from './assets/Images/documents.png'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Images from './screens/Images'
+import { PDF } from './screens/PDF';
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
@@ -53,6 +53,7 @@ const App = () => {
         <Stack.Navigator>
           <Stack.Screen name='Home' component={HomeScreen}/>
           <Stack.Screen name='Images' component={Images}/>
+          <Stack.Screen name='PDF' component={PDF}/>
         </Stack.Navigator>
         <StatusBar style="auto" />
       </NavigationContainer>

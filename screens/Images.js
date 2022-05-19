@@ -2,25 +2,9 @@ import { View, Text, StyleSheet, ScrollView, Button, Image } from 'react-native'
 import { gql, useQuery } from '@apollo/client'
 import { Documents } from './Documents'
 
-// const ALL_DOCUMENTS = gql`
-//   query DocumentsUser ($user: String!){
-//     documents_user(user: $user) {
-//       storage,
-//       name,
-//       type
-//     }
-//   }
-// `
+import { ALL_DOCUMENTS } from '../graphql/Documents/queries'
 
-const ALL_DOCUMENTS = gql`
-  query {
-    documents_user(user: "1") {
-      storage,
-      name,
-      type
-    }
-  }
-`
+
 
 export default function Images() {
 
