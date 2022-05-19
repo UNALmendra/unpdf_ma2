@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, Image } from "react-native"
 import upload from '../assets/Images/upload.png'
 import styles from '../styles/appStyles'
 
-const Documents = () => {
+const MyDocuments = () => {
     return(
         <View style={{
             flex: 1,
@@ -20,4 +20,4 @@ const Documents = () => {
     );
 }
 
-export default Documents;
+export default MyDocuments;

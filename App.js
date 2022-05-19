@@ -9,7 +9,7 @@ import documents from './assets/Images/documents.png'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Documents from './screens/Documents';
+import MyDocuments from './screens/MyDocuments';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +17,7 @@ const HomeScreen = ({ navigation }) => {
   return (
         <View style={styles.container}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Documents')}>
+            onPress={() => navigation.navigate('MyDocuments')}>
             <Image
               source={documents}
               style={styles.image}
@@ -63,7 +63,7 @@ const App = () => {
         <Stack.Navigator>
           <Stack.Screen name='Home' component={HomeScreen}/>
           <Stack.Screen name='Images' component={ImageScreen}/>
-          <Stack.Screen name='Documents' component={Documents}/>
+          <Stack.Screen name='MyDocuments' component={MyDocuments}/>
         </Stack.Navigator>
         <StatusBar style="auto" />
     </NavigationContainer>
