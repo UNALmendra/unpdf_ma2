@@ -1,4 +1,5 @@
-import React from "react"
+import React, {useState, useCallback} from "react"
+import * as DocumentPicker from 'expo-document-picker';
 import { Text, View, TouchableOpacity, Image, ScrollView } from "react-native"
 import upload from '../assets/Images/upload.png'
 import styles from '../styles/appStyles'
@@ -14,7 +15,21 @@ const ALL_DOCUMENTS = gql`
     }
   }
 `
+
+
 const MyDocuments = () => {
+  
+    const [fileResponse, setFileResponse] = useState([]);
+
+    const handleDocumentSelection = useCallback(async () => {
+        try {
+          const response = await DocumentPicker.getDocumentAsync();
+          console.log(response)
+          setFileResponse(response);
+        } catch (err) {
+          console.warn(err);
+        }
+      }, []);
 
     const {data, error, loading} = useQuery(ALL_DOCUMENTS)
 
@@ -24,7 +39,8 @@ const MyDocuments = () => {
             alignItems: 'center'
           }}>
           <Text style={styles.title}> Mis Documentos</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleDocumentSelection}>
             <Image
               source={upload}
               style={styles.image}
