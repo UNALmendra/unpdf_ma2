@@ -1,5 +1,7 @@
 import React from "react"
-import { Text, View } from "react-native"
+import { Text, View, TouchableOpacity, Image } from "react-native"
+import upload from '../assets/Images/upload.png'
+import styles from '../styles/appStyles'
 
 const Documents = () => {
     return(
@@ -8,7 +10,12 @@ const Documents = () => {
             justifyContent: 'center',
             alignItems: 'center'
           }}>
-          <Text>Hello, world!</Text>
+          <TouchableOpacity>
+            <Image
+              source={upload}
+              style={styles.image}
+            />
+          </TouchableOpacity>
         </View>
     );
 }
