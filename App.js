@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import imgtopdf from './assets/Images/PDF-to-JPG.png'
 import pdftoimg from './assets/Images/PDF-to-PNG.png'
+import documents from './assets/Images/documents.png'
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Images from './screens/Images'
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
@@ -21,6 +23,16 @@ const Stack = createNativeStackNavigator();
 const HomeScreen = ({ navigation }) => {
   return (
         <View style={styles.container}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Documents')}>
+            <Image
+              source={documents}
+              style={styles.image}
+            />
+          </TouchableOpacity>
+          
+          <Text>Mis Documentos</Text>
+
           <TouchableOpacity>
             <Image
               source={imgtopdf}
@@ -40,7 +52,7 @@ const HomeScreen = ({ navigation }) => {
             />
           </TouchableOpacity>
           <Text>Convertir PNG a PDF</Text>
-          </View>
+        </View>
       );
 }
 
@@ -69,6 +81,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
   },
 
+  logo: {
+    padding: 100,
+  },
   image: {
     height: 200,
     width: 300,
