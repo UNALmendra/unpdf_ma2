@@ -32,26 +32,16 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
           
           <Text>Mis Documentos</Text>
-
-          <TouchableOpacity>
-            <Image
-              source={imgtopdf}
-              style={styles.image}
-            />
-          </TouchableOpacity>
-          
-          <Text>Convertir PDF a PNG</Text>
     
           <TouchableOpacity
             onPress={() => {
-              Images.auxGetDocumentsUser
               navigation.navigate('Images')}}>
             <Image
               source={pdftoimg}
               style={styles.image}
             />
           </TouchableOpacity>
-          <Text>Convertir PNG a PDF</Text>
+          <Text>Convertir Imagen a PDF</Text>
         </View>
       );
 }

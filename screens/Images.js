@@ -1,6 +1,4 @@
 import { View, Text, StyleSheet, ScrollView, Button, Image } from 'react-native'
-import { useState } from "react"
-import { getDocumentsUser, uploadDocuments } from "../graphql/axios_"
 import { gql, useQuery } from '@apollo/client'
 import { Documents } from './Documents'
 
@@ -27,7 +25,7 @@ const ALL_DOCUMENTS = gql`
 export default function Images() {
 
     const {data, error, loading} = useQuery(ALL_DOCUMENTS)
-    
+
     const styles = StyleSheet.create({
         container: {
             flex: 1,
@@ -55,7 +53,6 @@ export default function Images() {
             {loading 
                 ? <Text>Loading...</Text>
                 : <ScrollView><Documents documents={data.documents_user}/></ScrollView>
-                
             }
         </>
     )
