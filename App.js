@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import imgtopdf from './assets/Images/PDF-to-JPG.png'
 import pdftoimg from './assets/Images/PDF-to-PNG.png'
-import documents from './assets/Images/documents.png'
+import mydocuments from './assets/Images/documents.png'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Images from './screens/Images'
@@ -14,7 +14,7 @@ import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/c
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: 'http://192.168.10.14:5000/graphql'
+    uri: 'http://localhost:5000/graphql'
   })
 })
 
@@ -23,13 +23,6 @@ const Stack = createNativeStackNavigator();
 const HomeScreen = ({ navigation }) => {
   return (
         <View style={styles.container}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Documents')}>
-            <Image
-              source={documents}
-              style={styles.image}
-            />
-          </TouchableOpacity>
           
           <Text>Mis Documentos</Text>
     
