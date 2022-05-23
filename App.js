@@ -1,15 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Button } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native'
 
-import pdftoimg from './assets/Images/PDF-to-PNG.png'
-import documents from './assets/Images/documents.png'
-
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Images from './screens/Images'
-import { PDF } from './screens/PDF';
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
+import { HomeScreen } from './Home/Home';
+import ImagesScreen from './Images/Screen';
+import ShowPDF from './Images/ShowPDF';
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -20,40 +18,14 @@ const client = new ApolloClient({
 
 const Stack = createNativeStackNavigator();
 
-const HomeScreen = ({ navigation }) => {
-  return (
-        <View style={styles.container}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Documents')}>
-            <Image
-              source={documents}
-              style={styles.image}
-            />
-          </TouchableOpacity>
-          
-          <Text>Mis Documentos</Text>
-    
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Images')}}>
-            <Image
-              source={pdftoimg}
-              style={styles.image}
-            />
-          </TouchableOpacity>
-          <Text>Convertir Imagen a PDF</Text>
-        </View>
-      );
-}
-
 const App = () => {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name='Home' component={HomeScreen}/>
-          <Stack.Screen name='Images' component={Images}/>
-          <Stack.Screen name='PDF' component={PDF}/>
+          <Stack.Screen name='Images' component={ImagesScreen}/>
+          <Stack.Screen name= 'PDF' component={ShowPDF}/>
         </Stack.Navigator>
         <StatusBar style="auto" />
       </NavigationContainer>
